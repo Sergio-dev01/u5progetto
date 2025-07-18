@@ -7,3 +7,5 @@ import sergiomaselli.u5progetto.entities.Postazione;
 @Repository
 public interface PostazioneRepository extends JpaRepository<Postazione, Long> {
 }
+
+

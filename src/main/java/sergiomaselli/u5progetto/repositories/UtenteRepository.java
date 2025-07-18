@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import sergiomaselli.u5progetto.entities.Utente;
 
 @Repository
-public interface UtenteRepository extends JpaRepository<Utente, Long> {
+public interface UtenteRepository extends JpaRepository<Utente, String> {
 }
