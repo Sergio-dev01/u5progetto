@@ -1,12 +1,14 @@
 package sergiomaselli.u5progetto.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import sergiomaselli.u5progetto.entities.Prenotazione;
 import sergiomaselli.u5progetto.exceptions.NotFoundException;
 import sergiomaselli.u5progetto.repositories.PrenotazioneRepository;
 
 import java.util.List;
 
+@Service
 public class PrenotazioneService {
     @Autowired
     private PrenotazioneRepository prenotazioneRepository;

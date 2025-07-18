@@ -21,7 +21,7 @@ public class Prenotazione {
     private LocalDate dataPrenotazione;
 
     @ManyToOne
-    @JoinColumn(name = "username_utente")
+    @JoinColumn(name = "username_utente", referencedColumnName = "username")
     private Utente utente;
 
     @ManyToOne

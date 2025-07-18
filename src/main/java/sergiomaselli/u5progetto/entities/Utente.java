@@ -14,8 +14,10 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 public class Utente {
+    //    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;
     @Id
-    @Column(unique = true, nullable = false)
+    @Column(name = "username", unique = true, nullable = false)
     private String username;
 
     private String nomeCompleto;
@@ -24,8 +26,10 @@ public class Utente {
     @OneToMany(mappedBy = "utente", cascade = CascadeType.ALL)
     private List<Prenotazione> prenotazioni;
 
-    public Utente(String nomeCompleto, String email) {
+    public Utente(String username, String nomeCompleto, String email) {
+        this.username = username;
         this.nomeCompleto = nomeCompleto;
         this.email = email;
+
     }
 }
