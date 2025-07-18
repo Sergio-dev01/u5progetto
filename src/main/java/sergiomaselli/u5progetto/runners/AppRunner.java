@@ -6,12 +6,14 @@ import org.springframework.stereotype.Component;
 import sergiomaselli.u5progetto.entities.Postazione;
 import sergiomaselli.u5progetto.entities.Prenotazione;
 import sergiomaselli.u5progetto.entities.Utente;
+import sergiomaselli.u5progetto.enums.TipoPostazione;
 import sergiomaselli.u5progetto.services.EdificioService;
 import sergiomaselli.u5progetto.services.PostazioneService;
 import sergiomaselli.u5progetto.services.PrenotazioneService;
 import sergiomaselli.u5progetto.services.UtenteService;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Component
 public class AppRunner implements CommandLineRunner {
@@ -30,12 +32,12 @@ public class AppRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-//        //Creazione Edificio
-//        Edificio edificio = new Edificio("Edificio Beta", "Via Sassi 3", "Bari");
+        //Creazione Edificio
+//        Edificio edificio = new Edificio("Edificio Charlie", "Viale d'Italia 20", "Bari");
 //        edificio = edificioService.save(edificio);
 //
 //        //Creazione Postazione
-//        Postazione postazione = new Postazione("Postazione privata", TipoPostazione.PRIVATO, 10L, edificio);
+//        Postazione postazione = new Postazione("Postazione privata 2", TipoPostazione.PRIVATO, 15L, edificio);
 //        postazione = postazioneService.save(postazione);
 //
 //        //Creazione Utente
@@ -49,6 +51,9 @@ public class AppRunner implements CommandLineRunner {
 //        System.out.println("Dati caricati correttamente.");
         System.out.println("****Test Prenotazione****");
         testPrenotazione();
+
+        System.out.println("****Test ricerca postazioni****");
+        testRicercaPostazioni();
 
     }
 
@@ -74,6 +79,22 @@ public class AppRunner implements CommandLineRunner {
             System.out.println("Errore: " + e.getMessage());
         }
     }
+
+    int testRicercaPostazioni() {
+        List<Postazione> risultati = postazioneService.findByTipoPostazioneAndCitta(TipoPostazione.PRIVATO, "Bari");
+
+        int numeroRisultati = risultati.size();
+
+        System.out.println("Postazioni trovate: " + numeroRisultati);
+        System.out.println("Elenco Postazioni:");
+        for (Postazione p : risultati) {
+            System.out.println(p.getDescrizione() + " - " + p.getEdificio().getCitta() + " - " + p.getEdificio().getIndirizzo());
+        }
+
+        return numeroRisultati;
+    }
+
+
 }
 
 
