@@ -1,0 +1,9 @@
+package sergiomaselli.u5progetto.repositories;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import sergiomaselli.u5progetto.entities.Utente;
+
+@Repository
+public interface UtenteRepository extends JpaRepository<Utente, Long> {
+}

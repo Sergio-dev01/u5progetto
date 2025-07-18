@@ -7,8 +7,6 @@ import lombok.Setter;
 import lombok.ToString;
 import sergiomaselli.u5progetto.enums.TipoPostazione;
 
-import java.util.UUID;
-
 @Entity
 @Getter
 @Setter
@@ -18,9 +16,6 @@ public class Postazione {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(unique = true)
-    private UUID codice;
 
     private String descrizione;
 
@@ -32,4 +27,11 @@ public class Postazione {
     @ManyToOne
     @JoinColumn(name = "edificio_id")
     private Edificio edificio;
+
+    public Postazione(String descrizione, TipoPostazione tipoPostazione, Long maxOccupanti, Edificio edificio) {
+        this.descrizione = descrizione;
+        this.tipoPostazione = tipoPostazione;
+        this.maxOccupanti = maxOccupanti;
+        this.edificio = edificio;
+    }
 }
