@@ -1,9 +1,6 @@
 package sergiomaselli.u5progetto.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,4 +19,12 @@ public class Prenotazione {
     private Long id;
 
     private LocalDate dataPrenotazione;
+
+    @ManyToOne
+    @JoinColumn(name = "utente_id")
+    private Utente utente;
+
+    @ManyToOne
+    @JoinColumn(name = "postazione_id")
+    private Postazione postazione;
 }

@@ -28,4 +28,8 @@ public class Postazione {
     private TipoPostazione tipoPostazione;
 
     private Long maxOccupanti;
+
+    @ManyToOne
+    @JoinColumn(name = "edificio_id")
+    private Edificio edificio;
 }

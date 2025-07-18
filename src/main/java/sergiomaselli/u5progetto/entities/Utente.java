@@ -1,13 +1,12 @@
 package sergiomaselli.u5progetto.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -21,6 +20,9 @@ public class Utente {
 
     private String nomeCompleto;
     private String email;
+
+    @OneToMany(mappedBy = "utente", cascade = CascadeType.ALL)
+    private List<Prenotazione> prenotazioni;
 
     public Utente(String nomeCompleto, String email) {
         this.nomeCompleto = nomeCompleto;
