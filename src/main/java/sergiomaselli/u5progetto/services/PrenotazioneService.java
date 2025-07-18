@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sergiomaselli.u5progetto.entities.Prenotazione;
 import sergiomaselli.u5progetto.exceptions.NotFoundException;
+import sergiomaselli.u5progetto.exceptions.ReservationNotAvailable;
 import sergiomaselli.u5progetto.repositories.PrenotazioneRepository;
 
 import java.util.List;
@@ -21,7 +22,16 @@ public class PrenotazioneService {
         return prenotazioneRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
     }
 
-    public Prenotazione save(Prenotazione p) {
+    public Prenotazione save(Prenotazione p) throws Exception {
+        boolean postazioneOccupata = prenotazioneRepository
+                .existsByPostazioneIdAndDataPrenotazione(p.getPostazione().getId(), p.getDataPrenotazione());
+
+        if (postazioneOccupata) {
+            throw new ReservationNotAvailable("La postazione è già prenotata per questa data.");
+        }
+
         return prenotazioneRepository.save(p);
     }
+
 }
+
